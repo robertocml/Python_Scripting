@@ -30,3 +30,17 @@ reg.fit(X,y)
 
 #predecimos una nueva instancia (Para una casa de 3300 sqr ft)
 print(reg.predict([[3300]]))
+
+# ------ Vamos a predecir todas los precios de areas.csv
+#Creamos del df
+df_areas = pd.read_csv('areas.csv')
+#Y predecimos
+predictions = reg.predict(df_areas)
+
+#Le anexamos las predicciones como columna al df
+df_areas['precio prediccion'] = predictions
+print(df_areas)
+
+#Y por ultimo convertimos ese nuevo df en un csv
+df_areas.to_csv('Predicciones_(Home_Price).csv')
+

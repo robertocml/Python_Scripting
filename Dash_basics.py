@@ -13,10 +13,13 @@ app.layout = html.Div(children=[
                         {'x' : [1,2,3,4,5],'y' : [5,7,2,1,6], 'type' : 'bar', 'name' : 'Gatos'},
                          ],
                     'layout' : {
-                        'title' : 'Basic Dash tutorial'
-                    }
+                        'title' : 'Basic Dash tutorial                                                                                              v  '
+
+                    }   
                 })
     ])
+
+    
 
 if __name__ == '__main__':
     app.run_server(debug=True)

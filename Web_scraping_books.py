@@ -14,3 +14,6 @@ url = 'http://books.toscrape.com/catalogue/page-1.html'
 def getdata(start_url,pgs):
     current = 0
     urls = browser.get(start_url)
+
+
+print("Testing..")

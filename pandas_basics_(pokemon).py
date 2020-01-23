@@ -30,5 +30,27 @@ df = pd.read_csv('pokemon_data.csv')
 # for index,row in df.iterrows():
 #     print(index, row['Name'])
 
-# loc used for finding spesific data that is NOT Integer based, is more text based
-print(df.loc[df['Type 1'] == 'Fire'])
+# loc used for finding specific data that is NOT Integer based, is more text based
+# print(df.loc[df['Type 1'] == 'Fire'])
+
+# It gives a buch of (sometimes) useful information
+# print(df.describe())
+
+# Sorting the pokemons by alphabetical orden.. from z to a (because asc = False) and by attack power from low to high
+# print(df.sort_values(['Name', 'Attack'], ascending=[1, 0]))
+
+# Now lets add a new column of Total... which is the sum of all culmuns...
+# df['Total'] = df['HP'] + df['Attack'] + df['Defense'] + df['Sp. Atk'] + df['Sp. Def'] + df['Speed']
+# print(df.head(5))
+
+# Now just let drop that Total column...
+# df = df.drop(columns=['Total'])
+# print(df)
+
+# Now let's add the total column again but in a different way...
+# df['Total'] = df.iloc[:, 4:10].sum(axis=1)
+# print(df.head(5))
+
+# Now lets put the total next to the name...
+# cols = list(df.columns)
+# df = df[cols[0:2] + [cols[-1]] + cols[2:12]]

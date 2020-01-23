@@ -16,4 +16,4 @@ def getdata(start_url,pgs):
     urls = browser.get(start_url)
 
 
-print("Testing..")
+print("Testing pycharm vcs..")

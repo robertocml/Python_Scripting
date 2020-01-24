@@ -54,3 +54,14 @@ df = pd.read_csv('pokemon_data.csv')
 # Now lets put the total next to the name...
 # cols = list(df.columns)
 # df = df[cols[0:2] + [cols[-1]] + cols[2:12]]
+
+# print(df.head(5))
+
+# So now lets export this modified version of the csv...
+# df.to_csv('Pokemon(modified).csv', index=False)
+
+# So now lets do some filtering data...
+# Lets first filter by [Type 1] = Grass
+# print(df[df['Type 1'] == 'Grass'])
+# print("total grass pokes = ",df[df['Type 1'] == 'Grass'].shape[0])
+

@@ -65,3 +65,8 @@ df = pd.read_csv('pokemon_data.csv')
 # print(df[df['Type 1'] == 'Grass'])
 # print("total grass pokes = ",df[df['Type 1'] == 'Grass'].shape[0])
 
+# Printing pokemons with 2 conditions... (AND and OR cases)
+# print(df.loc[(df['Type 1'] == 'Grass') & (df['Type 2'] == 'Poison')])
+# print(df.loc[(df['Type 1'] == 'Grass') | (df['Type 2'] == 'Poison')])
+
+

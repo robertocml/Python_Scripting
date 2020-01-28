@@ -29,14 +29,12 @@ df['FechaInicio'] = pd.to_datetime(df.FechaInicio)
 df['FechaFin'] = pd.to_datetime(df.FechaFin)
 
 
-# ----  Empezamos con el Analisis
+# -------  Empezamos con el Analisis
 
 # Primero calculamos la cantidad de pasos totales por fecha..
-df_TotalSteps = df.groupby(['FechaFin']).sum()
+df_Results = pd.DataFrame(columns=['Fecha', 'PasosTotales'])
 
+df_Results = df.groupby(['FechaFin']).sum()
 
 # ....
-
-
-
-print(df_TotalSteps)
+print(df_Results.columns)

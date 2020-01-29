@@ -16,12 +16,11 @@ from bs4 import BeautifulSoup
 
 req = requests.get('http://books.toscrape.com/catalogue/page-1.html')
 soup = BeautifulSoup(req.text, "lxml")
-
 url = 'http://books.toscrape.com/catalogue/page-1.html'
 
-for tag in soup.find_all('a'):
-    print(tag.text)
+test = soup.find_all('h3')
 
-
-body = soup.find("article", {'class':'product_prod'}).get_text()
-print(len(body))
+# Getting the titles
+for each_a in test:
+    for each_title in each_a:
+        print(each_title['title'])

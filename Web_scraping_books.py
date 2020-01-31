@@ -5,6 +5,7 @@
 # import pandas as pd
 # import time
 import requests
+import pandas as pd
 from bs4 import BeautifulSoup
 
 # Version with Selenium......
@@ -18,9 +19,19 @@ req = requests.get('http://books.toscrape.com/catalogue/page-1.html')
 soup = BeautifulSoup(req.text, "lxml")
 url = 'http://books.toscrape.com/catalogue/page-1.html'
 
-test = soup.find_all('h3')
+df = pd.DataFrame(columns=["Title","Price","Rating","Stock"])
 
-# Getting the titles
-for each_a in test:
-    for each_title in each_a:
-        print(each_title['title'])
+articles = soup.find_all('article')
+
+
+for each in articles:
+    rating = each.findChild("p")['class'][1]
+    title = each.findChild("h3").findChild("a")['title']
+    price = each.find_all("div")[1].findChild("p").text
+    stock = each.find_all("div")[1].select('div > p')[1].get_text(strip=True)
+
+    row = [title, price, rating, stock]
+    df.loc[len(df)] = row
+
+df.to_csv("Books_Scraped.csv", index=False)
+print(df)

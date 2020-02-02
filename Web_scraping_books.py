@@ -1,39 +1,30 @@
-#Basic Scraping using bs4
-
-# from selenium import webdriver
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.chrome.options import Options
-# from selenium.webdriver import Chrome2
-# import pandas as pd
-# import time
+# Basic Scraping using bs4
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 
-# Version with Selenium......
-# path = 'C:\\Users\\rober\Downloads\\archives\\chromedriver_win32\\chromedriver.exe'
-# chrome_options = Options()
-# chrome_options.add_argument("- incognito")
-# browser = webdriver.Chrome(path, options=chrome_options)
-# pages = 3
+# list for storing all reqs
+reqs = []
 
-req = requests.get('http://books.toscrape.com/catalogue/page-1.html')
-soup = BeautifulSoup(req.text, "lxml")
-url = 'http://books.toscrape.com/catalogue/page-1.html'
+#Getting the reqs from test web
+for x in range(1, 51):
+    reqs.append(requests.get('http://books.toscrape.com/catalogue/page-' + str(x) + '.html'))
 
-df = pd.DataFrame(columns=["Title","Price","Rating","Stock"])
+# Creating the df
+df = pd.DataFrame(columns=["Title", "Price", "Rating", "Stock"])
 
-articles = soup.find_all('article')
+# Scraping all info from all 50 pages in the website...
+for x in range(0, 50):
+    soup = BeautifulSoup(reqs[x].text, "lxml")
+    articles = soup.find_all('article')
+    for each in articles:
+        rating = each.findChild("p")['class'][1]
+        title = each.findChild("h3").findChild("a")['title']
+        price = each.find_all("div")[1].findChild("p").text
+        stock = each.find_all("div")[1].select('div > p')[1].get_text(strip=True)
+        row = [title, price, rating, stock]
+        df.loc[len(df)] = row
+        df['Price'] = df['Price'].str[-5:]
 
-
-for each in articles:
-    rating = each.findChild("p")['class'][1]
-    title = each.findChild("h3").findChild("a")['title']
-    price = each.find_all("div")[1].findChild("p").text
-    stock = each.find_all("div")[1].select('div > p')[1].get_text(strip=True)
-
-    row = [title, price, rating, stock]
-    df.loc[len(df)] = row
-
+# Creating a csv with info..
 df.to_csv("Books_Scraped.csv", index=False)
-print(df)

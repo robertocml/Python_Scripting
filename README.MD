@@ -9,3 +9,5 @@ Notes:
 
 Things to do: (02-02-2020)
  - Create the yaml file with *all dependencies of ml model (for the venv)
+ ---------------------------------------------
+ - Scrape per category and sort by rating

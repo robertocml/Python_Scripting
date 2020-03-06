@@ -20,6 +20,7 @@ result_list = list(result)
 # Check how you do NOT need it to convert it to a list
 # within the for loop to unpack the zip object, but if its
 # converted to a list also works..
+# Since zip() generates tuples, you can unpack these in the header of a for loop:
 for one, two in list(zip(number_list, str_list)):
     print(one, two)
 

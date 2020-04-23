@@ -1,5 +1,5 @@
 # Easy Examples of zip function..
-number_list = [1, 2, 3]
+number_list = [1, 2, 3, 4, 5]
 str_list = ['one', 'two', 'three']
 
 # No iterables are passed
@@ -25,4 +25,10 @@ for one, two in list(zip(number_list, str_list)):
     print(one, two)
 
 for one, two in zip(number_list, str_list):
-    print(one)
+    print(one, two)
+
+# ----------- Time----------
+import time
+
+# time() function returns the number of seconds passed since epoch.
+print('time.time() ->', time.time())
